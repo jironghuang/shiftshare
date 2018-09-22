@@ -20,7 +20,6 @@ shift_share(ap_grp_labels, ap_numerator1, ap_numerator2, ap_denominator1,
 }
 \value{
 object
-shift_share()
 }
 \description{
 This function allows you to do shift-share analysis on rates (e.g. employment rate, basketball field goal % for 2 point - 3 point analysis)

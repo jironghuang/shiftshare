@@ -10,7 +10,6 @@
 
 shift_share <- function(ap_grp_labels, ap_numerator1, ap_numerator2, ap_denominator1, ap_denominator2){
 
-  ## Get the environment for this
   thisEnv <- environment()
 
   #Initializing parameters here
@@ -35,6 +34,7 @@ shift_share <- function(ap_grp_labels, ap_numerator1, ap_numerator2, ap_denomina
   dynamic_effect = NULL
 
   all_effects = NULL
+  agg_effects = NULL
 
   ## Create the list used to represent an
   ## object for this class
@@ -98,7 +98,6 @@ shift_share <- function(ap_grp_labels, ap_numerator1, ap_numerator2, ap_denomina
     setProp1 = function()
     {
       prop1 = ap_denominator1 / sum(ap_denominator1)
-      print(ap_denominator1)
       return(assign("prop1",prop1,thisEnv))
     },
 
@@ -152,10 +151,6 @@ shift_share <- function(ap_grp_labels, ap_numerator1, ap_numerator2, ap_denomina
       methd$setProp2()
       methd$setRate1()
 
-      print(rate1)
-      print(prop2)
-      print(prop1)
-
       across_effect = rate1 * (prop2 - prop1)
 
       return(assign("across_effect", across_effect, thisEnv))
@@ -207,6 +202,23 @@ shift_share <- function(ap_grp_labels, ap_numerator1, ap_numerator2, ap_denomina
                                )
       assign("all_effects", all_effects, thisEnv)
       return(get("all_effects", all_effects, thisEnv))
+    },
+
+    get_agg_effects = function(){
+
+      methd$setWithin_effect()
+      methd$setAcross_effect()
+      methd$setDynamic_effect()
+
+      agg_effects = data.frame(
+        Description =  c("aggregated_effects"),
+        within_effect = sum(within_effect),
+        across_effect = sum(across_effect),
+        dynamic_effect = sum(methd$getDynamic_effect()),
+        overall_effect = sum(within_effect, across_effect, methd$getDynamic_effect())
+      )
+      assign("agg_effects", agg_effects, thisEnv)
+      return(get("agg_effects", agg_effects, thisEnv))
     }
 
   )
@@ -221,6 +233,7 @@ shift_share <- function(ap_grp_labels, ap_numerator1, ap_numerator2, ap_denomina
 
 
 ###########################Demonstration of OOP version for shift-share analysis#######################
+# Commiting new project to github: https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
 # emp1 = c(10, 20, 40, 50)
 # pop1 = c(40, 50, 60, 70)
 # emp2 = c(20, 30, 50, 60)
@@ -232,14 +245,9 @@ shift_share <- function(ap_grp_labels, ap_numerator1, ap_numerator2, ap_denomina
 #                            ap_denominator1 = pop1,
 #                            ap_denominator2 = pop2)
 #
-#
-# ss_analysis$setAcross_effect()
-# ss_analysis$getAcross_effect()
-#
-# ss_analysis$setDynamic_effect()
-# ss_analysis$getDynamic_effect()
-#
-# apply(ss_analysis$get_effects()[,-1], 2, sum)
+# ss_analysis$get_effects()
+# ss_analysis$get_agg_effects()
+
 #########################################################################################################
 
 # #Non OOP way for shift share analysis
