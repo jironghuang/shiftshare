@@ -1,0 +1,10 @@
+Package: shiftshare
+Title: Shift Share Analysis
+Version: 0.0.0.9000
+Authors@R: person("Jirong", "Huang", email = "jironghuang88@gmail.com", role = c("aut", "cre"))
+Description: This package allows you to decompose percentage point or absolute changes into within group and across group effects. 
+Depends: R (>= 3.4.4)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0.9000
