@@ -1,12 +1,12 @@
 ## Shift Share Analysis
 
-During my career, I often have to deal with compositional & within group effects. For instance, the employment rate fell by 3% across 2 period. How much of it is due to an increase in employment rate within the sub-group and how much of it is due to compositional shift (for example ageing population).
+During my career, I often have to deal with compositional & within group type of analysis. For instance, the employment rate fell by 3% across 2 period. How much of it is due to an increase in employment rate within the sub-group and how much of it is due to compositional shift (for example ageing population).
 
 A formal way to explain these effects is known as shift-share analysis. It allows you to decompose percentage point change or absolute changes (WIP) into within group and across group effects. 
 
 A package currently used in the R community is REAT, but it doesn't allow you to decompose the effects into finer categories. Hence, I hope this package developed here is able to fill up the gap.   
 
-Some examples that you may use this tool are,
+Some possible applications are the following,
 
 - Employment rate
 - Demographics rate
@@ -14,7 +14,7 @@ Some examples that you may use this tool are,
 
 To start using this package, you may first install the devtools package and execute the following command. install_github("jironghuang/shiftshare").
 
-You may follow the example to better understand how this package works. Essentially, what the example does is to decomposte the 29.7% point change into 3 effects. Within effect == 68.8%,  Across_effect == -7.4% and Dynamic Effect == -31.8%  
+You may follow the example to better understand how this package works. Essentially, what the example does is to decompose the 29.7% point change into 3 effects. Within effect == 68.8%,  Across_effect == -7.4% and Dynamic Effect == -31.8%  
 
 ### Quick example
 ```
